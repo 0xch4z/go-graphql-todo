@@ -1,0 +1,10 @@
+package: github.com/charliekenney23/go-graphql-complex
+import:
+- package: github.com/gin-gonic/gin
+  version: ^1.2.0
+- package: github.com/jinzhu/gorm
+  version: ^1.0.0
+- package: github.com/go-sql-driver/mysql
+  version: ^1.3.0
+- package: github.com/dgrijalva/jwt-go
+  version: ^3.1.0
