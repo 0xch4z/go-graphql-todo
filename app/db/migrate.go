@@ -1,7 +1,7 @@
 package db
 
 import (
-	"github.com/charliekenney23/go-graphql-complex/app/model"
+	"github.com/charliekenney23/go-graphql-todo/app/model"
 	"github.com/jinzhu/gorm"
 )
 

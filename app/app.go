@@ -9,11 +9,11 @@ import (
 	// side effect import for MYSQL driver
 	_ "github.com/go-sql-driver/mysql"
 
-	"github.com/charliekenney23/go-graphql-complex/app/db"
-	"github.com/charliekenney23/go-graphql-complex/app/handler"
-	"github.com/charliekenney23/go-graphql-complex/app/middleware"
-	"github.com/charliekenney23/go-graphql-complex/app/shared"
-	"github.com/charliekenney23/go-graphql-complex/config"
+	"github.com/charliekenney23/go-graphql-todo/app/db"
+	"github.com/charliekenney23/go-graphql-todo/app/handler"
+	"github.com/charliekenney23/go-graphql-todo/app/middleware"
+	"github.com/charliekenney23/go-graphql-todo/app/shared"
+	"github.com/charliekenney23/go-graphql-todo/config"
 )
 
 // SharedApp is the shared instance of the

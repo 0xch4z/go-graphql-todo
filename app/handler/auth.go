@@ -4,9 +4,9 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/charliekenney23/go-graphql-complex/app/auth"
-	"github.com/charliekenney23/go-graphql-complex/app/model"
-	"github.com/charliekenney23/go-graphql-complex/app/shared"
+	"github.com/charliekenney23/go-graphql-todo/app/auth"
+	"github.com/charliekenney23/go-graphql-todo/app/model"
+	"github.com/charliekenney23/go-graphql-todo/app/shared"
 	"github.com/gin-gonic/gin"
 )
 

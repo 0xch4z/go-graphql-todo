@@ -4,7 +4,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/charliekenney23/go-graphql-complex/app/graphql/schema"
+	"github.com/charliekenney23/go-graphql-todo/app/graphql/schema"
 	"github.com/gin-gonic/gin"
 	"github.com/graphql-go/graphql"
 )

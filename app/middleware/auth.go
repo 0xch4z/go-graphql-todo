@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/charliekenney23/go-graphql-complex/app/auth"
-	"github.com/charliekenney23/go-graphql-complex/app/shared"
+	"github.com/charliekenney23/go-graphql-todo/app/auth"
+	"github.com/charliekenney23/go-graphql-todo/app/shared"
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 )

@@ -3,7 +3,7 @@ package model
 import (
 	"time"
 
-	"github.com/charliekenney23/go-graphql-complex/app/shared"
+	"github.com/charliekenney23/go-graphql-todo/app/shared"
 )
 
 // User type

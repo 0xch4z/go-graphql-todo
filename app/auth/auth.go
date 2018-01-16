@@ -3,11 +3,10 @@ package auth
 import (
 	"time"
 
-	"golang.org/x/crypto/bcrypt"
-
-	"github.com/charliekenney23/go-graphql-complex/app/model"
-	"github.com/charliekenney23/go-graphql-complex/app/shared"
+	"github.com/charliekenney23/go-graphql-todo/app/model"
+	"github.com/charliekenney23/go-graphql-todo/app/shared"
 	"github.com/dgrijalva/jwt-go"
+	"golang.org/x/crypto/bcrypt"
 )
 
 // GenerateToken generates a new JWT token with

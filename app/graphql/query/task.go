@@ -3,9 +3,9 @@ package query
 import (
 	"errors"
 
-	"github.com/charliekenney23/go-graphql-complex/app/graphql/types"
-	"github.com/charliekenney23/go-graphql-complex/app/model"
-	"github.com/charliekenney23/go-graphql-complex/app/shared"
+	"github.com/charliekenney23/go-graphql-todo/app/graphql/types"
+	"github.com/charliekenney23/go-graphql-todo/app/model"
+	"github.com/charliekenney23/go-graphql-todo/app/shared"
 	"github.com/graphql-go/graphql"
 )
 

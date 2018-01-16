@@ -1,6 +1,6 @@
 package main
 
-import "github.com/charliekenney23/go-graphql-complex/app"
+import "github.com/charliekenney23/go-graphql-todo/app"
 
 func main() {
 	app := app.SharedApp

@@ -1,7 +1,7 @@
 package shared
 
 import (
-	"github.com/charliekenney23/go-graphql-complex/config"
+	"github.com/charliekenney23/go-graphql-todo/config"
 	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
 )
