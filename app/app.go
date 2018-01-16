@@ -2,7 +2,6 @@ package app
 
 import (
 	"log"
-	"net/http"
 
 	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
@@ -10,6 +9,9 @@ import (
 	// side effect import for MYSQL driver
 	_ "github.com/go-sql-driver/mysql"
 
+	"github.com/charliekenney23/go-graphql-complex/app/db"
+	"github.com/charliekenney23/go-graphql-complex/app/handler"
+	"github.com/charliekenney23/go-graphql-complex/app/middleware"
 	"github.com/charliekenney23/go-graphql-complex/app/shared"
 	"github.com/charliekenney23/go-graphql-complex/config"
 )
@@ -25,13 +27,16 @@ type App shared.App
 
 func init() {
 	conf := config.Shared
+
 	router := gin.Default()
-	db, err := gorm.Open(conf.DB.Dialect, conf.DB.URI())
+
+	database, err := gorm.Open(conf.DB.Dialect, conf.DB.URI())
 	if err != nil {
 		log.Fatalf("Error opening DB: %v\n", err)
 	}
+	database = db.Migrate(database)
 
-	SharedApp = newApp(shared.Initialize(router, db, conf))
+	SharedApp = newApp(shared.Initialize(router, database, conf))
 	SharedApp.mountRoutes()
 }
 
@@ -41,11 +46,9 @@ func (a *App) Run(host string) {
 }
 
 func (a *App) mountRoutes() {
-	a.Router.GET("/hello", func(c *gin.Context) {
-		c.JSON(http.StatusOK, &map[string]interface{}{
-			"success": true,
-		})
-	})
+	a.Router.POST("/user", handler.Register)
+	a.Router.POST("/auth", handler.Authenticate)
+	a.Router.GET("/graphql", middleware.RequireAuth, handler.GraphQL)
 }
 
 func newApp(a *shared.App) *App {

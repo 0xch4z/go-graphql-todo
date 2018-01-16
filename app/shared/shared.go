@@ -6,7 +6,8 @@ import (
 	"github.com/jinzhu/gorm"
 )
 
-var app *App
+// SharedApp shared application instance
+var SharedApp *App
 
 // Initialize initializes the shared app instance with
 // a reference to the router, database, and config. This
@@ -15,6 +16,6 @@ var app *App
 //
 // also returns a reference to the caller for convenience
 func Initialize(r *gin.Engine, db *gorm.DB, c *config.AppConfig) *App {
-	app = &App{r, db, c}
-	return app
+	SharedApp = &App{r, db, c}
+	return SharedApp
 }
