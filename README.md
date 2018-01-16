@@ -2,17 +2,21 @@
   Go GraphQL Todo
 </h1>
 <p align="center">
-  A golang GraphQL example using MySQL, Gorm and JWT
+  A golang GraphQL todo app using MySQL, Gorm and JWT
 </p>
 
 <h3 align="center">Queries</h3>
 <p align="center">
-  <img src="assets/queries.png" alt="queries">
+  <a target="_blank" href="https://raw.githubusercontent.com/Charliekenney23/go-graphql-todo/master/assets/queries.png">
+    <img src="assets/queries.png" alt="queries">
+  </a>
 </p>
 
 <h3 align="center">Mutations</h3>
 <p align="center">
-  <img src="assets/mutations.png" alt="mutations">
+  <a target="_blank" href="https://raw.githubusercontent.com/Charliekenney23/go-graphql-todo/master/assets/mutations.png">
+    <img src="assets/mutations.png" alt="mutations">
+  </a>
 </p>
 
 <h2>License 📜</h2>
