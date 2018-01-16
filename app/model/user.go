@@ -11,6 +11,7 @@ type User struct {
 	Username  string `json:"username" gorm:"unique" sql:"name:username"`
 	Password  []byte `json:"password" sql:"name:password"`
 	Role      string `json:"role" gorm:"type:ENUM('user','admin');default:'user'" sql:"name:role"`
+	Tasks     []Task `gorm:"ForeignKey:OwnerID" json:"tasks"`
 }
 
 // FindUserByUsername finds a given user by username or

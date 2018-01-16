@@ -11,3 +11,5 @@ import:
 - package: golang.org/x/crypto
   subpackages:
   - bcrypt
+- package: github.com/graphql-go/graphql
+  version: ^0.7.4

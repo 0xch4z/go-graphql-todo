@@ -1,5 +1,5 @@
-hash: 4e2da59a44152b72c0bec0ce433a610939a3ef677ed274ed1460ef43c08f3f46
-updated: 2018-01-15T19:13:18.948745-05:00
+hash: e6f099aa3d17446561681fff0c8e3d5061e28e4ac83de31b933647fb22e6a90f
+updated: 2018-01-16T01:18:46.912963-05:00
 imports:
 - name: github.com/dgrijalva/jwt-go
   version: dbeaa9332f19a944acb5736b4456cfcc02140e29
@@ -16,6 +16,8 @@ imports:
   version: 1e59b77b52bf8e4b449a57e6f79f21226d571845
   subpackages:
   - proto
+- name: github.com/graphql-go/graphql
+  version: 5e7dd4fc3e87341229fa03d8f79d2ab5455963fb
 - name: github.com/jinzhu/gorm
   version: 5174cc5c242a728b435ea2be8a2f7f998e15429b
 - name: github.com/jinzhu/inflection
@@ -30,6 +32,7 @@ imports:
   version: 13931e22f9e72ea58bb73048bc752b48c6d4d4ac
   subpackages:
   - bcrypt
+  - blowfish
 - name: golang.org/x/sys
   version: fff93fa7cd278d84afc205751523809c464168ab
   subpackages:
