@@ -12,5 +12,7 @@ var Root = graphql.NewObject(graphql.ObjectConfig{
 		"updateTask":   updateTask,
 		"completeTask": completeTask,
 		"undoTask":     undoTask,
+		// user mutations
+		"updateUser": updateUser,
 	},
 })

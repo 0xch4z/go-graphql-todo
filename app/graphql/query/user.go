@@ -2,7 +2,6 @@ package query
 
 import (
 	"errors"
-	"fmt"
 
 	"github.com/charliekenney23/go-graphql-complex/app/graphql/types"
 	"github.com/charliekenney23/go-graphql-complex/app/model"
@@ -25,8 +24,20 @@ var getUser = &graphql.Field{
 			return nil, errors.New("Could not find user")
 		}
 
-		fmt.Println("id => ", user.ID)
-
 		return user, nil
+	},
+}
+
+var getAllUsers = &graphql.Field{
+	Type:        graphql.NewList(types.User),
+	Description: "Get all users",
+	Resolve: func(params graphql.ResolveParams) (interface{}, error) {
+		var users []model.User
+
+		if err := shared.SharedApp.DB.Find(&users).Error; err != nil {
+			return nil, errors.New("Could not resolve users")
+		}
+
+		return users, nil
 	},
 }
