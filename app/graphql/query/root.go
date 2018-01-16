@@ -6,6 +6,8 @@ import "github.com/graphql-go/graphql"
 var Root = graphql.NewObject(graphql.ObjectConfig{
 	Name: "RootQuery",
 	Fields: graphql.Fields{
-		"getUser": getUser,
+		"getTask":     getTask,
+		"getAllTasks": getAllTasks,
+		"getUser":     getUser,
 	},
 })

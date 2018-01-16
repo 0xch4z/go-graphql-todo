@@ -6,6 +6,11 @@ import "github.com/graphql-go/graphql"
 var Root = graphql.NewObject(graphql.ObjectConfig{
 	Name: "RootMutation",
 	Fields: graphql.Fields{
-		"createTask": createTask,
+		// task mutations
+		"createTask":   createTask,
+		"deleteTask":   deleteTask,
+		"updateTask":   updateTask,
+		"completeTask": completeTask,
+		"undoTask":     undoTask,
 	},
 })
