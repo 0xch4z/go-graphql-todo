@@ -2,6 +2,7 @@ package query
 
 import (
 	"errors"
+	"fmt"
 
 	"github.com/charliekenney23/go-graphql-complex/app/graphql/types"
 	"github.com/charliekenney23/go-graphql-complex/app/model"
@@ -23,6 +24,8 @@ var getUser = &graphql.Field{
 		if err := shared.SharedApp.DB.Preload("Tasks").Find(&user, "username = ?", username).Error; err != nil {
 			return nil, errors.New("Could not find user")
 		}
+
+		fmt.Println("id => ", user.ID)
 
 		return user, nil
 	},

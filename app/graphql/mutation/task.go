@@ -32,3 +32,28 @@ var createTask = &graphql.Field{
 		return newTask, nil
 	},
 }
+
+var deleteTask = &graphql.Field{
+	Type:        types.Task,
+	Description: "Delete a task",
+	Args: graphql.FieldConfigArgument{
+		"id": &graphql.ArgumentConfig{Type: graphql.NewNonNull(graphql.String)},
+	},
+	Resolve: func(params graphql.ResolveParams) (interface{}, error) {
+		id := params.Context.Value("id").(uint)
+		isAdmin := params.Context.Value("role").(string) == "admin"
+		tID := params.Context.Value("description").(uint)
+
+		task := &model.Task{ID: tID}
+		if err := shared.SharedApp.DB.Find(&task).Error; err != nil {
+			return nil, errors.New("Task not found")
+		}
+
+		if !isAdmin && task.UserID != id {
+			return nil, errors.New("Unauthorized to delete task")
+		}
+
+		shared.SharedApp.DB.Delete(&task)
+		return task, nil
+	},
+}
