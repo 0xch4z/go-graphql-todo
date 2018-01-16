@@ -8,6 +8,6 @@ import (
 // Migrate migrates the DB if needed
 func Migrate(db *gorm.DB) *gorm.DB {
 	db.AutoMigrate(&model.User{}, &model.Task{})
-	db.Model(&model.Task{}).AddForeignKey("owner_id", "users(id)", "CASCADE", "CASCADE")
+	db.Model(&model.User{}).Related(&model.Task{})
 	return db
 }

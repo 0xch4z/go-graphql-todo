@@ -3,10 +3,10 @@ package model
 // Task type
 type Task struct {
 	Model
-	OwnerID     uint   `json:"ownerId" sql:"name:ownerId"`
-	IsComplete  bool   `json:"isComplete" sql:"name:isComplete"`
-	Title       string `json:"title" sql:"name:title"`
-	Description string `json:"description" sql:"name:description"`
+	UserID      uint   `json:"userId"`
+	IsComplete  bool   `json:"isComplete"`
+	Title       string `json:"title"`
+	Description string `json:"description"`
 }
 
 // Complete completes a given task

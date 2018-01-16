@@ -1,17 +1,19 @@
 package model
 
-import "github.com/charliekenney23/go-graphql-complex/app/shared"
+import (
+	"github.com/charliekenney23/go-graphql-complex/app/shared"
+)
 
 // User type
 type User struct {
 	Model
-	Email     string `json:"email" gorm:"unique" sql:"name:email"`
-	Firstname string `json:"firstname" sql:"name:firstname"`
-	Lastname  string `json:"lastname" sql:"name:lastname"`
-	Username  string `json:"username" gorm:"unique" sql:"name:username"`
-	Password  []byte `json:"password" sql:"name:password"`
-	Role      string `json:"role" gorm:"type:ENUM('user','admin');default:'user'" sql:"name:role"`
-	Tasks     []Task `gorm:"ForeignKey:OwnerID" json:"tasks"`
+	Email     string `json:"email" gorm:"unique"`
+	Firstname string `json:"firstname"`
+	Lastname  string `json:"lastname"`
+	Username  string `json:"username" gorm:"unique"`
+	Password  []byte `json:"password"`
+	Role      string `json:"role" gorm:"type:ENUM('user','admin');default:'user'"`
+	Tasks     []Task `json:"tasks"`
 }
 
 // FindUserByUsername finds a given user by username or

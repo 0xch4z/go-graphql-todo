@@ -20,7 +20,7 @@ var getUser = &graphql.Field{
 
 		username := params.Args["username"].(string)
 
-		if err := shared.SharedApp.DB.Find(&user, "username = ?", username).Error; err != nil {
+		if err := shared.SharedApp.DB.Preload("Tasks").Find(&user, "username = ?", username).Error; err != nil {
 			return nil, errors.New("Could not find user")
 		}
 

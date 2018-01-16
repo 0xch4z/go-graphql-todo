@@ -21,7 +21,7 @@ var createTask = &graphql.Field{
 		title, _ := params.Args["title"].(string)
 		desc, _ := params.Args["description"].(string)
 
-		newTask := model.Task{Title: title, Description: desc, OwnerID: uint(id)}
+		newTask := model.Task{Title: title, Description: desc, UserID: uint(id)}
 
 		tx := shared.SharedApp.DB.Begin()
 		if err := tx.Create(&newTask).Error; err != nil {
