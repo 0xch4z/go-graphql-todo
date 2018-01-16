@@ -14,7 +14,7 @@ func GraphQL(c *gin.Context) {
 	result := graphql.Do(graphql.Params{
 		Schema:        schema.Schema,
 		RequestString: c.Query("query"),
-		Context:       c.Request.Context(),
+		Context:       c,
 	})
 
 	if len(result.Errors) > 0 {

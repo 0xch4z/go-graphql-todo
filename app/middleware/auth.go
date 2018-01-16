@@ -1,6 +1,7 @@
 package middleware
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/charliekenney23/go-graphql-complex/app/auth"
@@ -24,6 +25,7 @@ func RequireAuth(c *gin.Context) {
 	}
 
 	if claims, ok := token.Claims.(*auth.Claims); ok && token.Valid {
+		fmt.Println("alles valid")
 		c.Set("id", int(claims.ID))
 		c.Set("username", claims.Username)
 		c.Set("role", claims.Role)

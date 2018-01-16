@@ -17,11 +17,11 @@ var createTask = &graphql.Field{
 		"description": &graphql.ArgumentConfig{Type: graphql.String},
 	},
 	Resolve: func(params graphql.ResolveParams) (interface{}, error) {
-		id := params.Context.Value("id").(uint)
+		id := params.Context.Value("id").(int)
 		title, _ := params.Args["title"].(string)
 		desc, _ := params.Args["description"].(string)
 
-		newTask := model.Task{Title: title, Description: desc, OwnerID: id}
+		newTask := model.Task{Title: title, Description: desc, OwnerID: uint(id)}
 
 		tx := shared.SharedApp.DB.Begin()
 		if err := tx.Create(&newTask).Error; err != nil {
