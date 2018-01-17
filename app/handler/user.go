@@ -35,10 +35,7 @@ func Register(c *gin.Context) {
 
 	hash, err := auth.HashPassword(ub.Password)
 	if err != nil {
-		c.AbortWithStatusJSON(http.StatusInternalServerError, &gin.H{
-			"error":   true,
-			"message": err.Error(),
-		})
+		abortWithInternalServerError(c, err)
 		return
 	}
 
@@ -54,20 +51,14 @@ func Register(c *gin.Context) {
 	tx := shared.SharedApp.DB.Begin()
 	if err := tx.Create(&user).Error; err != nil {
 		tx.Rollback()
-		c.AbortWithStatusJSON(http.StatusInternalServerError, &gin.H{
-			"error":   true,
-			"message": err.Error(),
-		})
+		abortWithInternalServerError(c, err)
 		return
 	}
 	tx.Commit()
 
 	tok, err := auth.GenerateToken(user)
 	if err != nil {
-		c.AbortWithStatusJSON(http.StatusInternalServerError, &gin.H{
-			"error":   true,
-			"message": err.Error(),
-		})
+		abortWithInternalServerError(c, err)
 		return
 	}
 

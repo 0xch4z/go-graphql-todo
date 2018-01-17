@@ -23,38 +23,26 @@ func Authenticate(c *gin.Context) {
 
 	decoder := json.NewDecoder(c.Request.Body)
 	if err := decoder.Decode(ab); err != nil {
-		c.AbortWithStatusJSON(http.StatusInternalServerError, &gin.H{
-			"error":   true,
-			"message": err.Error(),
-		})
+		abortWithInternalServerError(c, err)
 		return
 	}
 
 	user := &model.User{}
 
 	if err := shared.SharedApp.DB.Find(&user, "username = ?", ab.Username).Error; err != nil {
-		c.AbortWithStatusJSON(http.StatusNotFound, &gin.H{
-			"error":   true,
-			"message": err.Error(),
-		})
+		abortWithNotFoundError(c, "User")
 		return
 	}
 
 	match := auth.CheckPassword(user.Password, ab.Password)
 	if !match {
-		c.AbortWithStatusJSON(http.StatusUnauthorized, &gin.H{
-			"error":    true,
-			"messsage": "Unauthorized",
-		})
+		abortWithUnauthorizedError(c, "incorrect username or password")
 		return
 	}
 
 	tok, err := auth.GenerateToken(user)
 	if err != nil {
-		c.AbortWithStatusJSON(http.StatusInternalServerError, &gin.H{
-			"error":   true,
-			"message": err.Error(),
-		})
+		abortWithInternalServerError(c, err)
 		return
 	}
 
