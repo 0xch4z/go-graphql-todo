@@ -3,6 +3,7 @@ package mutation
 import (
 	"errors"
 
+	"github.com/charliekenney23/go-graphql-todo/app/auth"
 	"github.com/charliekenney23/go-graphql-todo/app/graphql/types"
 	"github.com/charliekenney23/go-graphql-todo/app/model"
 	"github.com/charliekenney23/go-graphql-todo/app/shared"
@@ -20,8 +21,7 @@ var updateUser = &graphql.Field{
 		"username":  &graphql.ArgumentConfig{Type: graphql.String},
 	},
 	Resolve: func(params graphql.ResolveParams) (interface{}, error) {
-		id := params.Context.Value("id").(int)
-		isAdmin := params.Context.Value("role").(string) == "admin"
+		ctx := auth.GetUserContextFrom(params.Context)
 		uID := params.Args["id"].(int)
 
 		user := &model.User{ID: uint(uID)}
@@ -29,7 +29,7 @@ var updateUser = &graphql.Field{
 			return nil, errors.New("User not found")
 		}
 
-		if !isAdmin && user.ID != uint(id) {
+		if !ctx.IsAdmin() && user.ID != ctx.ID {
 			return nil, errors.New("Unauthorized to update user")
 		}
 

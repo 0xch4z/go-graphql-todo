@@ -41,8 +41,7 @@ var deleteTask = &graphql.Field{
 		"id": &graphql.ArgumentConfig{Type: graphql.NewNonNull(graphql.Int)},
 	},
 	Resolve: func(params graphql.ResolveParams) (interface{}, error) {
-		id := params.Context.Value("id").(int)
-		isAdmin := params.Context.Value("role").(string) == "admin"
+		ctx := auth.GetUserContextFrom(params.Context)
 		tID := params.Context.Value("id").(int)
 
 		task := &model.Task{ID: uint(tID)}
@@ -50,7 +49,7 @@ var deleteTask = &graphql.Field{
 			return nil, errors.New("Task not found")
 		}
 
-		if !isAdmin && task.UserID != uint(id) {
+		if !ctx.IsAdmin() && task.UserID != ctx.ID {
 			return nil, errors.New("Unauthorized to delete task")
 		}
 
@@ -63,18 +62,13 @@ var updateTask = &graphql.Field{
 	Type:        types.Task,
 	Description: "Update a task",
 	Args: graphql.FieldConfigArgument{
-		"id": &graphql.ArgumentConfig{Type: graphql.NewNonNull(graphql.Int)},
-		// "email":     &graphql.Field{Type: graphql.String},
-		// "firstname": &graphql.Field{Type: graphql.String},
-		// "lastname":  &graphql.Field{Type: graphql.String},
-		// "username":  &graphql.Field{Type: graphql.String},
+		"id":          &graphql.ArgumentConfig{Type: graphql.NewNonNull(graphql.Int)},
 		"isComplete":  &graphql.ArgumentConfig{Type: graphql.Boolean},
 		"title":       &graphql.ArgumentConfig{Type: graphql.String},
 		"description": &graphql.ArgumentConfig{Type: graphql.String},
 	},
 	Resolve: func(params graphql.ResolveParams) (interface{}, error) {
-		id := params.Context.Value("id").(int)
-		isAdmin := params.Context.Value("role").(string) == "admin"
+		ctx := auth.GetUserContextFrom(params.Context)
 		tID := params.Args["id"].(int)
 
 		task := &model.Task{ID: uint(tID)}
@@ -82,7 +76,7 @@ var updateTask = &graphql.Field{
 			return nil, errors.New("Task not found")
 		}
 
-		if !isAdmin && task.UserID != uint(id) {
+		if !ctx.IsAdmin() && task.UserID != ctx.ID {
 			return nil, errors.New("Unauthorized to update task")
 		}
 
@@ -122,7 +116,7 @@ var completeTask = &graphql.Field{
 			return nil, errors.New("Task not found")
 		}
 
-		if ctx.IsAdmin() && task.UserID != uint(ctx.ID) {
+		if ctx.IsAdmin() && task.UserID != ctx.ID {
 			return nil, errors.New("Unauthorized to complete task")
 		}
 
@@ -149,7 +143,7 @@ var undoTask = &graphql.Field{
 			return nil, errors.New("Task not found")
 		}
 
-		if ctx.IsAdmin() && task.UserID != uint(ctx.ID) {
+		if ctx.IsAdmin() && task.UserID != ctx.ID {
 			return nil, errors.New("Unauthorized to undo task")
 		}
 

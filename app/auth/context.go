@@ -15,7 +15,7 @@ func (uc *UserContext) IsAdmin() bool {
 // GetUserContextFrom extracts user claims from a context
 // and returns a user context
 func GetUserContextFrom(ctx context.Context) *UserContext {
-	id, _ := ctx.Value("id").(uint)
+	id := uint(ctx.Value("id").(int))
 	role, _ := ctx.Value("role").(string)
 	username, _ := ctx.Value("username").(string)
 

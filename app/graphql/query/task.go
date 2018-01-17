@@ -16,7 +16,6 @@ var getTask = &graphql.Field{
 		"id": &graphql.ArgumentConfig{Type: graphql.NewNonNull(graphql.Int)},
 	},
 	Resolve: func(params graphql.ResolveParams) (interface{}, error) {
-		// ctx := auth.GetUserContextFrom(params.Context)
 		id := params.Args["id"].(int)
 
 		task := model.Task{ID: uint(id)}
