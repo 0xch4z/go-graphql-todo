@@ -4,5 +4,5 @@ import "github.com/charliekenney23/go-graphql-todo/app"
 
 func main() {
 	app := app.SharedApp
-	app.Run(":8080")
+	app.Run(":80")
 }
